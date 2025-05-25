@@ -97,36 +97,92 @@ public class Task5
 
     public static int Solve1(Input input)
     {
-        var validRules = input.updates.SelectMany(unvalidatedUpate =>
-            ValidateRules<ImmutableList<Update>>(input.rules, unvalidatedUpate, update => [update], () => []));
-        return validRules.Select(TakeCenter).Sum();
+        //var validRules = input.updates.SelectMany(unvalidatedUpate =>
+         //   ValidateRules<ImmutableList<Update>>(input.rules, unvalidatedUpate, update => [update], unvalid => []));
+        var adj = BuildAdjacency(input.rules);
+    
+        return input.updates
+            .Select(u => u.commands)
+            .Where(page => PageRespectsRules(page, adj))
+            .Select(u => new Update(u))
+            .Select(TakeCenter)
+            .Sum();
+        //return validRules.Select(TakeCenter).Sum();
     }
 
     private static C ValidateRules<C>(Rules inputRules, UnvalidatedUpdate unvalidatedUpdate, Func<Update, C> succ,
-        Func<C> err)
+        Func<UnvalidatedUpdate, C> err)
     {
         var relevantRules = GenerateRules(unvalidatedUpdate);
 
         var conflictingRules = relevantRules.Any(x => inputRules.rules.Contains(new Rule(x.y, x.x)));
-        return conflictingRules ? err() : succ(new Update(unvalidatedUpdate.commands));
+        return conflictingRules ? err(unvalidatedUpdate) : succ(new Update(unvalidatedUpdate.commands));
     }
 
     private static int TakeCenter(Update update)
     {
-        // could be wrong but we would have checked that earlier
         return update.commands[update.commands.Count / 2];
     }
+    
+    static ImmutableDictionary<int, ImmutableHashSet<int>>
+        BuildAdjacency(Rules rules)
+    {
+        var b = ImmutableDictionary.CreateBuilder<int, ImmutableHashSet<int>>();
+    
+        foreach (var r in rules.rules)        
+            b[r.x] = (b.TryGetValue(r.x, out var s) ? s : [])
+                     .Add(r.y);
+    
+        return b.ToImmutable();
+    }
+    static bool PathExists(int from, int to,
+                           ImmutableDictionary<int, ImmutableHashSet<int>> adj)
+    {
+        var stack   = new Stack<int>();
+        var visited = new HashSet<int>();
+    
+        stack.Push(from);
+        while (stack.Count > 0)
+        {
+            var v = stack.Pop();
+            if (!visited.Add(v)) continue;
+            if (v == to) return true;    
+    
+            foreach (var w in adj.GetValueOrDefault(v, []))
+                stack.Push(w);
+        }
+        return false;
+    }
+    
+static bool PageRespectsRules(
+        ImmutableList<int> page,
+        ImmutableDictionary<int, ImmutableHashSet<int>> adj)
+{
+    // duplicates instantly disqualify the page
+    if (page.Count != page.Distinct().Count()) return false;
+
+    // every earlier element must NOT be reachable from a later element
+    for (var i = 0; i < page.Count - 1; i++)
+        for (var j = i + 1; j < page.Count; j++)
+            if (PathExists(page[j], page[i], adj))  //  page[j] →* page[i] ? HERE!
+                return false;                       // violation found
+
+    return true;                                    // page already topologically sorted
+}
 
 
     public int Solve2(Input input)
     {
+        var unvalidRules = input.updates.SelectMany(unvalidatedUpate =>
+            ValidateRules<ImmutableList<UnvalidatedUpdate>>(input.rules, unvalidatedUpate, update => [], unvalid => [unvalid]));
+        
         throw new NotImplementedException();
     }
 
     public int Part1(string s)
     {
         var input = Parse(s);
-        var solution = Solve1(input);
+        var solution = Solve1(Example);//Solve1(input);
         return solution;
     }
 
