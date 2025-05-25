@@ -1,0 +1,113 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "Sprache/3.0.0-develop-00049": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Sprache.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Sprache.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Sprache/3.0.0-develop-00049": {
+      "sha512": "72DtoKmqHsycgSAXQFaUVhndOasHOIVxmmNnUvDaF/BxhBpDu5YPnlHG4cFG37sVJeF11pZ0D7UwwG7bOHS5mA==",
+      "type": "package",
+      "path": "sprache/3.0.0-develop-00049",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net5.0/Sprache.dll",
+        "lib/net5.0/Sprache.xml",
+        "lib/netstandard2.0/Sprache.dll",
+        "lib/netstandard2.0/Sprache.xml",
+        "lib/netstandard2.1/Sprache.dll",
+        "lib/netstandard2.1/Sprache.xml",
+        "sprache.3.0.0-develop-00049.nupkg.sha512",
+        "sprache.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "Sprache >= 3.0.0-develop-00049"
+    ]
+  },
+  "packageFolders": {
+    "/Users/magnus/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/magnus/RiderProjects/Advent2/Advent2/Advent2.csproj",
+      "projectName": "Advent2",
+      "projectPath": "/Users/magnus/RiderProjects/Advent2/Advent2/Advent2.csproj",
+      "packagesPath": "/Users/magnus/.nuget/packages/",
+      "outputPath": "/Users/magnus/RiderProjects/Advent2/Advent2/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/magnus/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.100"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "dependencies": {
+          "Sprache": {
+            "target": "Package",
+            "version": "[3.0.0-develop-00049, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/nix/store/a6hgbcq818mmarh87vnn60csj1aqs8d6-dotnet-sdk-9.0.101/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

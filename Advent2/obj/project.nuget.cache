@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ze88GYn/Jr4=",
+  "success": true,
+  "projectFilePath": "/Users/magnus/RiderProjects/Advent2/Advent2/Advent2.csproj",
+  "expectedPackageFiles": [
+    "/Users/magnus/.nuget/packages/sprache/3.0.0-develop-00049/sprache.3.0.0-develop-00049.nupkg.sha512"
+  ],
+  "logs": []
+}

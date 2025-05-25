@@ -1,0 +1,83 @@
+###############################################################################
+# Build output
+###############################################################################
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+artifacts/                 # dotnet publish / pack
+**/obj/Docker/**           # container-optimized builds
+[Tt]est[Rr]esults*/
+*.log
+*.cache
+
+###############################################################################
+# IDE/workspace cruft
+###############################################################################
+# Visual Studio / VS for Mac
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# VS Code & JetBrains Rider
+.vscode/
+.idea/
+
+# MonoDevelop / Xamarin
+*.userprefs
+
+###############################################################################
+# NuGet & tooling
+###############################################################################
+*.nupkg
+*.snupkg
+*.nuspec
+.nuget/
+packages/
+project.lock.json
+project.assets.json
+*.csproj.user
+
+###############################################################################
+# Framework-generated artefacts
+###############################################################################
+# Razor, EF Core, WPF, etc.
+*.g.cs
+*.g.i.cs
+*.designer.cs
+Migrations/*Snapshot.cs
+.razor/
+
+###############################################################################
+# Diagnostics / profiling / coverage
+###############################################################################
+*.pdb
+*.svclog
+coverage*/
+coverage.*.xml
+.ncrunch*/                 # NCrunch test runner
+SonarQube/
+
+###############################################################################
+# Secrets & local config (tweak to taste)
+###############################################################################
+appsettings.Development.json
+secrets.json
+*.pfx
+
+###############################################################################
+# Misc
+###############################################################################
+# System files
+Thumbs.db
+ehthumbs.db
+.DS_Store
+$RECYCLE.BIN/
+Desktop.ini
+
+# Backup/temporary
+*.bak
+*.tmp
+*~
